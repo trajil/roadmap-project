@@ -27,9 +27,9 @@ int main()
     double x, y;
     char choice_operator, exit;
 
-    /* I chose the "do while" loop because the other loops would not be the right choice:
+    /* I chose the "do while" loop because the code needs to be executed at least one time before the break, so the other loops are not for this case:
             - the "for" loop is for repetetive tasks with a known ending;
-            - the "do while" loop is for pre-tasks before the main loop - not needed in this case;
+            - the "while" loop is leaves the option to never actually executy the loop - which is not the intention here;
     */
     do
     {
