@@ -31,6 +31,10 @@ int main()
     double x, y;
     char choice_operator, exit = 'Y';
 
+    /* I chose the "while" loop because the other loops would not be the right choice:
+            - the "for" loop is for repetetive tasks with a known ending;
+            - the "do while" loop is for pre-tasks before the main loop - not needed in this case;
+    */
     while( exit == 'y' || exit == 'Y')
     {
         cout << t_welcome_1; cin >> x >> y; cout << t_choice; cin >> choice_operator;
