@@ -1,0 +1,58 @@
+### 1. Basics of C++
+	- **Simple input and output:** Use `cin` and `cout` for user input and output. !!! Streams in C++ !!!
+
+
+### 5. Object-Oriented Programming (OOP)
+- **Inheritance:** Deriving classes and using inheritance. !!! Too early (must bring you knowledge from Funtional programing to OOP) !!!
+- **Polymorphism and Encapsulation:** Overriding methods and protecting data within a class. !!! You can forget about it !!!
+**Example:**
+A base class `Vehicle` with a derived class `Car` that has additional properties and methods.
+**Exercise for GPT:**
+"Design a class in C++ Vehicle` with at least one attribute (e.g. `speed`) and a method `displayInfo()`. Then create a derived class `Car` that extends `Vehicle` and contains additional attributes and an overridden `displayInfo()` method. Demonstrate the creation and use of a `Car` object in the main program." !!! Not scalable for inheritance and Polymorphism !!!
+
+-------------------------------------------------- -------------------------------------------------- ----------------------------------
+/* START FROM HERE */
+
+Basic
+	A. Primitive types	-	Data Types and Variables. Understanding of different data types (int, char, float, double) and their usage.
+	B. Basic operators - Application of arithmetic (e.g. +, -, *, /) operators.
+	Problem 1 (Aritmetic Operators)
+		"Write a C++ program that asks the user to enter two integers. The program should then calculate and output the sum, difference, product and quotient (as a floating point number) of these numbers. Use `cin` for input and `cout` for the output."
+
+Control structures
+	A. If-Else Statements - Decision making based on conditions
+		A.1 logical (e.g. &&, ||) operators.
+	Problem 1 (Aritmetic Operations)
+		"Using the Basic/A/Problem 1 project make a control structure using if statements and Logical operators. The structure should give the user a choice between the available arithmetic operations. The choice should be the sign of the operation"
+	B. Switch statements -
+	Problem 1 
+		"Using the Control structures/A/Problem 1 project. Replace the ifs with a switch statement"
+	C. Loops - Use of `for`, `while`, `do-while` for repeated executions.
+	Problem 1
+		"Using the Control structures/B/Problem 1 project and add repetability to the project. Chose the right loop to give the user as many arithmetic operations as he/she wishes. All the code should be in the loop. Write a few sentances to elaborate your loop choice"
+	
+Functions
+	A. Define and call functions - Create reusable code blocks with specific tasks.
+	Problem 1 (Operations to Functions)
+		"Using the Control structure/C/Problem 1 refactor every arithmetic operation so it has a function. Do that only for the primitive type (int). Print the results to screen. Hard code the values in the functions"
+	B. Parameters and return values Handling input parameters and returning results.
+	Problem 1 (Aritmetic Operation functions Argument passing)
+		"Using the Function/A/Problem 1 refactor the Aritmetic Functions for the type (int) and pass the arithmetic operands as arguments to the functions. Print result to standard output"
+	Problem 2 (Aritmetic Operation functions returning results)
+		"Using the Function/B/Problem 1 refactor the Aritmetic Functions to return the result insted of printing it in the function"
+	C. Function Overloading
+	Problem 1	(Aritmetic Operation functions overloading)
+		"Using the Function/B/Problem 2 Overload every arithmetic function for the Primitive type of (double)"
+	D. Argument default values
+	Problem 1 (Primitive calculator function)
+		"Using the Function/C/Problem 1 create a function which to hold the control function. The function should take thee choice variable as an argument. Also if no argument is passed the calculator function should default to the sum operation"
+	
+Object-Oriented Programming (OOP)
+	A. Classes and Objects 
+	B. Classes Constructors and Destructors
+	Problem 1	()
+	C. Classe attributes
+	D. Classe methods
+	
+	- Creation of classes and instantiation of objects.
+	Problem 1 ()
