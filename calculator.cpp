@@ -3,10 +3,32 @@ using std::cin, std::cout, std::string;
 
 /* CURRENT TASK:
 
-    "Using the Control structures/B/Problem 1 project and add repetability to the project. Choose the right loop to give the user as many arithmetic operations as he/she wishes.
-    All the code should be in the loop. Write a few sentances to elaborate your loop choice"
+    Functions
+    A. Define and call functions - Create reusable code blocks with specific tasks.
+    Problem 1 (Operations to Functions)
+        "Using the Control structure/C/Problem 1 refactor every arithmetic operation so it has a function. Do that only for the primitive type (int). Print the results to screen. Hard code the values in the functions"
 
 */
+
+int sum(int x, int y)
+{
+    return x + y;
+}
+
+int dif(int x, int y)
+{
+    return x - y;
+}
+
+double quo(int x, int y)
+{
+    return x / y;
+}
+
+int product(int x, int y)
+{
+    return x * y;
+}
 
 int main()
 {
@@ -24,13 +46,9 @@ int main()
     string t_exit_question = "\nPress 'Y' to repeat!";
     string t_end = "\nGood bye!";
 
-    double x, y;
+    int x, y;
     char choice_operator, exit;
 
-    /* I chose the "do while" loop because the code needs to be executed at least one time before the break, so the other loops are not for this case:
-            - the "for" loop is for repetetive tasks with a known ending;
-            - the "while" loop is leaves the option to never actually executy the loop - which is not the intention here;
-    */
     do
     {
         cout << t_welcome_1;
@@ -38,24 +56,24 @@ int main()
         cout << t_choice;
         cin >> choice_operator;
 
-        double sum = x + y, dif = x - y, product = x * y, quo = x / y;
+        // double sum = x + y, dif = x - y, product = x * y, quo = x / y;
 
         switch (choice_operator)
         {
         case '+':
-            cout << t_sum << sum;
+            cout << t_sum << sum(x, y);
             break;
 
         case '-':
-            cout << t_dif << dif;
+            cout << t_dif << dif(x, y);
             break;
 
         case '/':
-            cout << t_quo << quo;
+            cout << t_quo << quo(x, y);
             break;
 
         case '*':
-            cout << t_product << product;
+            cout << t_product << product(x, y);
             break;
 
         default:
