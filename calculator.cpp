@@ -3,13 +3,14 @@ using std::cin, std::cout, std::string;
 
 /* CURRENT TASK:
 
-    Functions
-    A. Define and call functions - Create reusable code blocks with specific tasks.
-    Problem 1 (Operations to Functions)
-        "Using the Control structure/C/Problem 1 refactor every arithmetic operation so it has a function. Do that only for the primitive type (int). Print the results to screen. Hard code the values in the functions"
-
+ B. Parameters and return values Handling input parameters and returning results.
+    Problem 1 (Aritmetic Operation functions Argument passing)
+        "Using the Function/A/Problem 1 refactor the Aritmetic Functions for the type (int) and pass the arithmetic operands as arguments to the functions. Print result to standard output"
+    Problem 2 (Aritmetic Operation functions returning results)
+        "Using the Function/B/Problem 1 refactor the Aritmetic Functions to return the result insted of printing it in the function"
 */
 
+// using one line with "return + variables" instead of two lines, one with the equation, the second with the return of the result -- less code
 int sum(int x, int y)
 {
     return x + y;
@@ -33,15 +34,17 @@ int product(int x, int y)
 int main()
 {
     // fixed outputs
-    string t_welcome_1 = "Hi there, buddy! We're doing maths and stuff! First: Enter your two numbers: \n";
+    string t_input_operator = "Hi there, buddy! We're doing maths and stuff! First, enter the operator (+,-,/ or *): ";
     string t_sum = "The sum is: ";
     string t_dif = "The difference is: ";
     string t_product = "The product is: ";
     string t_quo = "The quotient is: ";
-    string t_nunbers_wrong = "Please only use whole numbers!";
+    string t_nunbers_wrong = "Please only use whole numbers!\n";
 
     // choices
-    string t_choice = "Now select the type of arithmetic operation (+ - / or *) you want to use: ";
+    string t_input_numbers = "Now put in your two numbers (only whole numbers!)\n";
+    string t_input_numbers_1 = "Number 1: ";
+    string t_input_numbers_2 = "Number 2: ";
     string t_choice_wrong = "Please use: (+ - / or *)";
     string t_exit_question = "\nPress 'Y' to repeat!";
     string t_end = "\nGood bye!";
@@ -51,12 +54,12 @@ int main()
 
     do
     {
-        cout << t_welcome_1;
-        cin >> x >> y;
-        cout << t_choice;
+        cout << t_input_operator;
         cin >> choice_operator;
-
-        // double sum = x + y, dif = x - y, product = x * y, quo = x / y;
+        cout << t_input_numbers << t_input_numbers_1;
+        cin >> x;
+        cout << t_input_numbers_2;
+        cin >> y;
 
         switch (choice_operator)
         {
