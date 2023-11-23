@@ -1,11 +1,12 @@
 #include <iostream>
+#include <limits>
 using std::cin, std::cout, std::string;
 
 /* CURRENT TASK:
 D. Argument default values
     Problem 1 (Primitive calculator function)
-        "Using the Function/C/Problem 1 create a function which to hold the control function. 
-        The function should take thee choice variable as an argument. 
+        "Using the Function/C/Problem 1 create a function which to hold the control function.
+        The function should take thee choice variable as an argument.
         Also if no argument is passed the calculator function should default to the sum operation"
 */
 
@@ -147,30 +148,51 @@ void control(char choice_operator = '+', char choice_datatype = 'I')
 int main()
 {
 
-    char choice_operator, choice_datatype, exit;
+    char choice_datatype, exit;
+    char choice_operator;
     string input;
 
     cout << t_welcome << std::endl;
     do
     {
+        choice_operator = 0;
         cout << t_input_operator;
         getline(cin, input);
+            
+        if (input.empty())
+        {  
+           cout << "CHECK 1\n";
+           
+        }
+        else 
+        {
+           for (int i = 0; i < input.length(); i++)     //Getting the last digit of the string to char -by Victor
+           {
+              choice_operator = input[i];
+           }
+
+        }
+        
+
         cout << t_input_datatype;
         cin >> choice_datatype;
 
         char i = choice_operator;
 
-        if (i == '+' || i == '-' || i == '/' || i == '*') // how can I accept an empty input?
+        if (i == 0) // how can I accept an empty input? (solved)
         {
-            control(choice_operator, choice_datatype);
+            cout << "\nVALUE 0\n";
+            control();
         }
+
         else
         {
-            control();
+            control(choice_operator, choice_datatype);
         }
 
         cout << t_exit_question;
         cin >> exit;
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  //clearing cin
     } while (exit == 'Y' || exit == 'y');
 
     cout << t_end;
