@@ -76,6 +76,7 @@ int main()
     int x, y;
     double a, b;
     char choice_operator, choice_datatype, exit;
+    //type result;
 
     cout << t_welcome << std::endl;
     do
@@ -84,6 +85,7 @@ int main()
         cin >> choice_operator;
         cout << t_input_datatype;
         cin >> choice_datatype;
+        // result = f_control(choice_operator, choice_datatype);
 
         // FLOAT VALUES
         if (choice_datatype == 'F' || choice_datatype == 'f')
