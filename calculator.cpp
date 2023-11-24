@@ -36,44 +36,21 @@ string t_input_datatype = "Do you want to use INT (Enter 'I') or FLOAT (Enter 'F
 int x, y;
 double a, b;
 
-int sum(int x, int y)
-{
-    return x + y;
-}
+int sum(int x, int y);
+int dif(int x, int y);
+int quo(int x, int y);
+int product(int x, int y);
 
-int dif(int x, int y)
-{
-    return x - y;
-}
+double sum(double a, double b);
+double dif(double a, double b);
+double quo(double a, double b);
+double product(double a, double b);
+double power(double a, double b);
 
-int quo(int x, int y)
-{
-    return x / y;
-}
 
-int product(int x, int y)
+int binary()
 {
-    return x * y;
-}
-
-double sum(double a, double b)
-{
-    return a + b;
-}
-
-double dif(double a, double b)
-{
-    return a - b;
-}
-
-double quo(double a, double b)
-{
-    return a / b;
-}
-
-double product(double a, double b)
-{
-    return a * b;
+    return 5;
 }
 
 void control(char choice_operator = '+', char choice_datatype = 'I')
@@ -139,6 +116,10 @@ void control(char choice_operator = '+', char choice_datatype = 'I')
             break;
         }
     }
+
+    else if (choice_datatype == 'B' || choice_datatype == 'B')
+    {
+    }
     else
     {
         cout << t_datatype_wrong << std::endl;
@@ -147,6 +128,8 @@ void control(char choice_operator = '+', char choice_datatype = 'I')
 
 int main()
 {
+    //cin >> a >> b;
+    //cout << a << " to the power of " << b << std::endl << power(a, b) << std::endl;
 
     char choice_datatype, exit;
     char choice_operator;
@@ -158,21 +141,18 @@ int main()
         choice_operator = 0;
         cout << t_input_operator;
         getline(cin, input);
-            
-        if (input.empty())
-        {  
-           cout << "CHECK 1\n";
-           
-        }
-        else 
-        {
-           for (int i = 0; i < input.length(); i++)     //Getting the last digit of the string to char -by Victor
-           {
-              choice_operator = input[i];
-           }
 
+        if (input.empty())
+        {
+            cout << "CHECK 1\n";
         }
-        
+        else
+        {
+            for (int i = 0; i < input.length(); i++) // Getting the last digit of the string to char -by Victor
+            {
+                choice_operator = input[i];
+            }
+        }
 
         cout << t_input_datatype;
         cin >> choice_datatype;
@@ -192,10 +172,79 @@ int main()
 
         cout << t_exit_question;
         cin >> exit;
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  //clearing cin
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // clearing cin
     } while (exit == 'Y' || exit == 'y');
 
     cout << t_end;
 
     return 0;
+}
+
+int sum(int x, int y)
+{
+    return x + y;
+}
+
+int dif(int x, int y)
+{
+    return x - y;
+}
+
+int quo(int x, int y)
+{
+    return x / y;
+}
+
+int product(int x, int y)
+{
+    return x * y;
+}
+
+double sum(double a, double b)
+{
+    return a + b;
+}
+
+double dif(double a, double b)
+{
+    return a - b;
+}
+
+double quo(double a, double b)
+{
+    return a / b;
+}
+
+double product(double a, double b)
+{
+    return a * b;
+}
+
+double power(double a, double b)
+{
+    if (b > 0)
+    {
+        int power = a;
+        cout << "To the power of "
+             << "1" << std::endl;
+        cout << "A is now: " << a << std::endl;
+
+        for (int i = 1; i < b; i++)
+        {
+            cout << "To the power of " << i + 1 << std::endl;
+            a *= power;
+            cout << "A is now: " << a << std::endl;
+        }
+    }
+    else if (b == 0)
+    {
+        cout << "To the power of "
+             << "0" << std::endl;
+        a = 1;
+    }
+    else
+    {
+        cout << "The exponent needs to be at least 0!\n";
+    }
+    return a;
 }
