@@ -1,6 +1,7 @@
 #include <iostream>
 #include <limits>
-using std::cin, std::cout, std::string;
+#include <vector>
+using std::cin, std::cout, std::string, std::vector;
 
 /* CURRENT TASK:
 D. Argument default values
@@ -47,10 +48,39 @@ double quo(double a, double b);
 double product(double a, double b);
 double power(double a, double b);
 
+/*
+    dec is divided by 2. MODULO
+    remainder is taken straight to binary_string
+    continued until dec == 0
 
-int binary()
+
+    dec 98 = bin   1 1 0 0 0 1 0
+
+    98 %2 = 49 | 0
+    49 %2 = 24 | 1
+    24 %2 = 12 | 0
+    12 %2 = 6 | 0
+    6 %2 = 3 | 0
+    3 %2 = 1 | 1
+    1 %2 = 0 | 1
+*/
+
+vector<int> dec_to_binary(int x)
 {
-    return 5;
+    int binary_it = 0;
+    vector<int> binary_whole(0);
+    int counter = 0;
+    do
+    {
+        binary_it = x % 2;
+        binary_whole[] = binary_it;
+        x = x / 2 - binary_it;
+        counter++;
+    } while (x != 0);
+
+    
+
+    return binary_whole;
 }
 
 void control(char choice_operator = '+', char choice_datatype = 'I')
@@ -128,8 +158,11 @@ void control(char choice_operator = '+', char choice_datatype = 'I')
 
 int main()
 {
-    //cin >> a >> b;
-    //cout << a << " to the power of " << b << std::endl << power(a, b) << std::endl;
+    // cin >> a >> b;
+    // cout << a << " to the power of " << b << std::endl << power(a, b) << std::endl;
+
+    // cin >> x;
+    // cout << a << " to the power of " << b << std::endl << power(a, b) << std::endl;
 
     char choice_datatype, exit;
     char choice_operator;

@@ -1,0 +1,30 @@
+What is a Decimal Number?
+A decimal number is a number represented in the decimal number system.
+
+This system uses base 10 to represent numbers i.e. every digit in a decimal number is one of the following numbers: 0,1,2,3,4,5,6,7,8,9.
+
+Ex: 1123, 32, 451, etc.
+
+What is a Binary Number?
+Binary number is a number represented in the binary number system.
+
+This system uses base 2 to represent numbers i.e. every digit in a binary number is one of the following numbers: 0,1.
+
+Ex: 101, 111, 100, etc.
+
+Algorithm for Decimal to Binary Conversion in C
+Step 1: Divide the number by 2 and find the remainder, then store the remainder in an array.
+
+Step 2: Divide the number by 2.
+
+Step 3: Repeat the above two steps until the number is greater than zero.
+
+Step 4: Print the array in reverse order to get the binary representation of the number.
+
+
+DEZ 900
+
+step 1  900/2
+            
+step 2
+step 3
