@@ -3,12 +3,13 @@
 #include <vector>
 using std::cin, std::cout, std::string, std::vector;
 
+bool debug_mode = false;
+
 /* CURRENT TASK:
-D. Argument default values
-    Problem 1 (Primitive calculator function)
-        "Using the Function/C/Problem 1 create a function which to hold the control function.
-        The function should take thee choice variable as an argument.
-        Also if no argument is passed the calculator function should default to the sum operation"
+
+    BONUS ROUND:
+    Implement calculating to the power of and translating dec to bin;
+
 */
 
 // OVERLOADED FUNCTIONS -> INTEGERS
@@ -24,15 +25,16 @@ string t_numbers_wrong = "Please only use whole numbers!\n";
 string t_datatype_wrong = "Please only use 'F' or 'I'! \n";
 
 // inputs
-string t_input_operator = "First, enter the operator (+,-,/ or *): ";
+string t_input_operator = "First, enter the operator (+, -, /, * or p): ";
 string t_input_numbers_i = "Now type in your two numbers (only whole numbers!)\n";
 string t_input_numbers_f = "Now type in your two numbers! \n";
+string t_input_numbers_dec = "Translate decimal [NUMB1] to system_with_base_n[NUMB2]! \n";
 string t_input_numbers_1 = "Number 1: ";
 string t_input_numbers_2 = "Number 2: ";
-string t_choice_wrong = "Please use: (+ - / or *)";
+string t_choice_wrong = "Please use: (+, -, /, * or p)";
 string t_exit_question = "\nPress 'Y' to repeat!";
 string t_end = "\nGood bye!";
-string t_input_datatype = "Do you want to use INT (Enter 'I') or FLOAT (Enter 'F') values? ";
+string t_input_datatype = "Calculations [INT:I] or [FLOAT:F], Translations [DEC:D]? ";
 
 int x, y;
 double a, b;
@@ -48,44 +50,13 @@ double quo(double a, double b);
 double product(double a, double b);
 double power(double a, double b);
 
-/*
-    dec is divided by 2. MODULO
-    remainder is taken straight to binary_string
-    continued until dec == 0
-
-
-    dec 98 = bin   1 1 0 0 0 1 0
-
-    98 %2 = 49 | 0
-    49 %2 = 24 | 1
-    24 %2 = 12 | 0
-    12 %2 = 6 | 0
-    6 %2 = 3 | 0
-    3 %2 = 1 | 1
-    1 %2 = 0 | 1
-*/
-
-vector<int> dec_to_binary(int x)
-{
-    int binary_it = 0;
-    vector<int> binary_whole(0);
-    int counter = 0;
-    do
-    {
-        binary_it = x % 2;
-        binary_whole[] = binary_it;
-        x = x / 2 - binary_it;
-        counter++;
-    } while (x != 0);
-
-    
-
-    return binary_whole;
-}
+vector<int> dec_to_binary(int y, int x);
+vector<int> vector_reverse_with_length_and_print(vector<int> binary_whole, int vector_length, int base);
 
 void control(char choice_operator = '+', char choice_datatype = 'I')
 {
     // FLOAT VALUES
+
     if (choice_datatype == 'F' || choice_datatype == 'f')
     {
         cout << t_input_numbers_f << t_input_numbers_1;
@@ -108,6 +79,9 @@ void control(char choice_operator = '+', char choice_datatype = 'I')
 
         case '*':
             cout << t_product << product(a, b) << t_datatype_output_double;
+            break;
+        case 'p':
+            cout << t_product << power(a, b) << t_datatype_output_double;
             break;
 
         default:
@@ -147,8 +121,13 @@ void control(char choice_operator = '+', char choice_datatype = 'I')
         }
     }
 
-    else if (choice_datatype == 'B' || choice_datatype == 'B')
+    else if (choice_datatype == 'D' || choice_datatype == 'd')
     {
+        cout << t_input_numbers_dec << t_input_numbers_1;
+        cin >> x;
+        cout << t_input_numbers_2;
+        cin >> y;
+        dec_to_binary(x, y);
     }
     else
     {
@@ -177,7 +156,7 @@ int main()
 
         if (input.empty())
         {
-            cout << "CHECK 1\n";
+            cout << "(input left empty)\n";
         }
         else
         {
@@ -194,7 +173,7 @@ int main()
 
         if (i == 0) // how can I accept an empty input? (solved)
         {
-            cout << "\nVALUE 0\n";
+            cout << "\n VALUE 0\n";
             control();
         }
 
@@ -280,4 +259,81 @@ double power(double a, double b)
         cout << "The exponent needs to be at least 0!\n";
     }
     return a;
+}
+
+vector<int> dec_to_binary(int y, int x)
+{
+    vector<int> binary_whole(100);
+
+    int vector_length;
+    int integer = y;
+    int i = 0;
+    int base = x;
+    int rest;
+
+    if (integer >= base)
+    {
+        do
+        {
+            if (debug_mode)
+            {
+                cout << binary_whole[i];
+            }
+            rest = integer % base;
+
+            binary_whole[i] = rest; // what is segmentation fault?
+            integer = (integer - binary_whole[i]) / base;
+            i++;
+
+            if (debug_mode)
+            {
+                cout << "Current BINARY: ";
+                cout << binary_whole[i];
+                cout << std::endl;
+            }
+        } while (integer != 0);
+    }
+    else
+    {
+        cout << "Too low value entered!\n";
+        return binary_whole;
+    }
+    vector_length = i;
+    if (debug_mode)
+    {
+        cout << "@@@@@@@@@ TESTSTELLE VEKTOR EINGABE @@@@@@@@@@\n";
+        cout << std::endl;
+    }
+    vector_reverse_with_length_and_print(binary_whole, vector_length, base);
+    if (debug_mode)
+    {
+        cout << "\n@@@@@@@@@ TESTSTELLE VEKTOR AUSGABE @@@@@@@@@@\n";
+        cout << std::endl;
+    }
+    return binary_whole;
+}
+
+vector<int> vector_reverse_with_length_and_print(vector<int> input_vector, int vector_length, int base)
+{
+    vector<int> calc_vector(100);
+
+    calc_vector = input_vector;
+
+    // Printing out in right direction
+    cout << "\n binary number: \n";
+    for (int i = 0; i < vector_length; i++)
+    {
+        cout << calc_vector[i];
+    }
+
+    // printing and assigning reverse direction
+    cout << "\n binary number, new order: \n";
+    for (int i = vector_length - 1, j = 0; j < vector_length; i--, j++)
+    {
+        calc_vector[j] = input_vector[i];
+
+        cout << calc_vector[j];
+    }
+
+    return calc_vector;
 }
