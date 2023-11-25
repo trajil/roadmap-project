@@ -5,22 +5,17 @@
 using std::cin, std::cout, std::string, std::vector;
 
 // foreward_declaration functions
-vector<int> dec_to_binary(int x);
-vector<int> vector_reverse(int x);
+vector<int> dec_to_binary(int y);
+vector<int> vector_reverse_with_length_and_print(vector<int> binary_whole, int vector_length);
 
-// variables
-vector<int> testitestmann(1000);
-int counter, x, y, element;
+int counter, x, y;
+int vector_length;
 
 int main()
 {
-    // cout << "Set the vector_length: ";
-    // cin >> x;
-    cout << "Set Y: ";
+    cout << "Your number: ";
     cin >> y;
-    cout << std::endl;
     dec_to_binary(y);
-    // vector_reverse(x - 1);
 
     return 0;
 }
@@ -29,19 +24,18 @@ vector<int> dec_to_binary(int y)
 {
     cout << std::endl;
     cout << "@@@@@@@@@@@@@@@@@@@\n";
-    vector<int> binary_whole(1000);
+    vector<int> binary_whole(100);
 
     int integer = y;
     int i = 0;
     int base = 2;
     int rest;
-    int vector_length;
 
     if (integer >= base)
     {
         do
         {
-            //cout << binary_whole[i];
+            // cout << binary_whole[i];
             rest = integer % 2;
             // cout << "RESTWERT: " << rest; // what is segmentation fault?
             binary_whole[i] = rest;
@@ -58,65 +52,38 @@ vector<int> dec_to_binary(int y)
         cout << "Too low value entered!\n";
         return binary_whole;
     }
-
     vector_length = i;
-    // reversing VECTOR
-    for (int i = vector_length, j = 0; i >= 0; i--, j++)
-    {
-
-        testitestmann[i] = j;
-    }
-
-    // printing whole Vector out: Values N to 0
-    cout << "\n Whole vector: ";
-    for (int i = 0; i <= vector_length; i++)
-    {
-        cout << testitestmann[i];
-    }
+    cout << "@@@@@@@@@ TESTSTELLE VEKTOR EINGABE @@@@@@@@@@\n";
     cout << std::endl;
-    cout << "@@@@@@@@@@@@@@@@@@@\n";
+    vector_reverse_with_length_and_print(binary_whole, vector_length);
+    cout << "\n@@@@@@@@@ TESTSTELLE VEKTOR AUSGABE @@@@@@@@@@\n";
+    cout << std::endl;
+
 
     return binary_whole;
 }
 
-vector<int> vector_reverse(int x)
+vector<int> vector_reverse_with_length_and_print(vector<int> input_vector, int vector_length)
 {
-    cout << "@@@@@@@@@@@@@@@@@@@\n";
-    // filling VECTOR UP, counting every step
-    for (int i = 0; i <= x; i++)
+    vector<int> calc_vector(100);
+
+    calc_vector = input_vector;
+
+    // Printing out in right direction
+    cout << "\n binary number: \n";
+    for (int i = 0; i < vector_length; i++)
     {
-        cout << " Position: " << i << std::endl;
-        testitestmann[i] = i;
-        cout << "VALUE: ";
-        cout << testitestmann[i] << std::endl;
-        counter = i;
+        cout << calc_vector[i];
     }
 
-    // printing whole Vector out: Values 0 to N
-    cout << "\n Whole vector: ";
-    for (int i = 0; i <= counter; i++)
+    // printing and assigning reverse direction
+    cout << "\n binary number, new order: \n";
+    for (int i = vector_length - 1, j = 0; j < vector_length; i--, j++)
     {
-        cout << testitestmann[i];
-    }
-    cout << std::endl;
+        calc_vector[j] = input_vector[i];
 
-    // reversing VECTOR, counting every step
-    for (int i = counter, j = 0; i >= 0; i--, j++)
-    {
-        cout << " Position " << i << std::endl;
-        testitestmann[i] = j;
-        cout << "VALUE: ";
-        cout << testitestmann[i] << std::endl;
+        cout << calc_vector[j];
     }
 
-    // printing whole Vector out: Values N to 0
-    cout << "\n Whole vector: ";
-    for (int i = 0; i <= counter; i++)
-    {
-        cout << testitestmann[i];
-    }
-    cout << std::endl;
-    cout << "@@@@@@@@@@@@@@@@@@@\n";
-
-    return testitestmann;
+    return calc_vector;
 }
