@@ -19,8 +19,9 @@ string t_sum = "The sum is: ";
 string t_dif = "The difference is: ";
 string t_product = "The product is: ";
 string t_quo = "The quotient is: ";
-string t_datatype_output_int = " (INTEGER)";
-string t_datatype_output_double = " (FLOAT)";
+string t_power = " to the power of ";
+string t_datatype_output_int = "";
+string t_datatype_output_double = "";
 string t_numbers_wrong = "Please only use whole numbers!\n";
 string t_datatype_wrong = "Please only use 'F' or 'I'! \n";
 
@@ -81,7 +82,7 @@ void control(char choice_operator = '+', char choice_datatype = 'I')
             cout << t_product << product(a, b) << t_datatype_output_double;
             break;
         case 'p':
-            cout << t_product << power(a, b) << t_datatype_output_double;
+            cout << a << t_power << b << " is: " << power(a, b) << t_datatype_output_double;
             break;
 
         default:
@@ -137,12 +138,11 @@ void control(char choice_operator = '+', char choice_datatype = 'I')
 
 int main()
 {
-    // cin >> a >> b;
-    // cout << a << " to the power of " << b << std::endl << power(a, b) << std::endl;
-
-    // cin >> x;
-    // cout << a << " to the power of " << b << std::endl << power(a, b) << std::endl;
-
+    if (debug_mode)
+    {
+        t_datatype_output_int = " (INTEGER)";
+        t_datatype_output_double = " (FLOAT)";
+    }
     char choice_datatype, exit;
     char choice_operator;
     string input;
@@ -152,7 +152,7 @@ int main()
     {
         choice_operator = 0;
         cout << t_input_operator;
-        getline(cin, input);
+        getline(cin, input); // only way for the input to accept [ENTER]
 
         if (input.empty())
         {
@@ -237,26 +237,33 @@ double power(double a, double b)
     if (b > 0)
     {
         int power = a;
-        cout << "To the power of "
-             << "1" << std::endl;
-        cout << "A is now: " << a << std::endl;
-
+        if (debug_mode)
+        {
+            cout << "To the power of "
+                 << "1" << std::endl;
+            cout << "A is now: " << a << std::endl;
+        }
         for (int i = 1; i < b; i++)
         {
-            cout << "To the power of " << i + 1 << std::endl;
+            if (debug_mode)
+            {
+                cout << "To the power of " << i + 1 << std::endl;
+            }
             a *= power;
-            cout << "A is now: " << a << std::endl;
+            if (debug_mode)
+            {
+                cout << "A is now: " << a << std::endl;
+            }
         }
     }
     else if (b == 0)
     {
-        cout << "To the power of "
-             << "0" << std::endl;
         a = 1;
     }
     else
     {
         cout << "The exponent needs to be at least 0!\n";
+        return 0;
     }
     return a;
 }
