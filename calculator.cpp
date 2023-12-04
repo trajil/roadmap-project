@@ -3,8 +3,6 @@
 #include <vector>
 using std::cin, std::cout, std::string, std::vector;
 
-bool debug_mode = false;
-
 /* CURRENT TASK:
 
     BONUS ROUND:
@@ -20,8 +18,8 @@ string t_dif = "The difference is: ";
 string t_product = "The product is: ";
 string t_quo = "The quotient is: ";
 string t_power = " to the power of ";
-string t_datatype_output_int = "";
-string t_datatype_output_double = "";
+string t_datatype_output_int = " (INTEGER)";
+string t_datatype_output_double = " (FLOAT)";
 string t_numbers_wrong = "Please only use whole numbers!\n";
 string t_datatype_wrong = "Please only use 'F' or 'I'! \n";
 
@@ -52,7 +50,6 @@ double product(double a, double b);
 double power(double a, double b);
 
 vector<int> dec_to_binary(int y, int x);
-vector<int> vector_reverse_with_length_and_print(vector<int> binary_whole, int vector_length, int base);
 
 void control(char choice_operator = '+', char choice_datatype = 'I')
 {
@@ -138,11 +135,7 @@ void control(char choice_operator = '+', char choice_datatype = 'I')
 
 int main()
 {
-    if (debug_mode)
-    {
-        t_datatype_output_int = " (INTEGER)";
-        t_datatype_output_double = " (FLOAT)";
-    }
+
     char choice_datatype, exit;
     char choice_operator;
     string input;
@@ -237,23 +230,11 @@ double power(double a, double b)
     if (b > 0)
     {
         int power = a;
-        if (debug_mode)
-        {
-            cout << "To the power of "
-                 << "1" << std::endl;
-            cout << "A is now: " << a << std::endl;
-        }
+
         for (int i = 1; i < b; i++)
         {
-            if (debug_mode)
-            {
-                cout << "To the power of " << i + 1 << std::endl;
-            }
+
             a *= power;
-            if (debug_mode)
-            {
-                cout << "A is now: " << a << std::endl;
-            }
         }
     }
     else if (b == 0)
@@ -270,77 +251,32 @@ double power(double a, double b)
 
 vector<int> dec_to_binary(int y, int x)
 {
-    vector<int> binary_whole(100);
-
-    int vector_length;
-    int integer = y;
-    int i = 0;
-    int base = x;
+    vector<int> binary_whole(0);
     int rest;
 
-    if (integer >= base)
+    // 'Y' is the integer, 'X' is the base_system (e.g. x=2 is binary system)
+    if (y >= x)
     {
-        do
+        for (int i = 1; y != 0; i++)
         {
-            if (debug_mode)
-            {
-                cout << binary_whole[i];
-            }
-            rest = integer % base;
+            // binary_whole.resize(i);
 
-            binary_whole[i] = rest; // what is segmentation fault?
-            integer = (integer - binary_whole[i]) / base;
-            i++;
-
-            if (debug_mode)
-            {
-                cout << "Current BINARY: ";
-                cout << binary_whole[i];
-                cout << std::endl;
-            }
-        } while (integer != 0);
+            rest = y % x;
+            y = (y - rest) / x;
+            binary_whole.insert(binary_whole.begin(), rest);
+        }
     }
     else
     {
-        cout << "Too low value entered!\n";
+        cout << "Too low integer entered!\n";
         return binary_whole;
     }
-    vector_length = i;
-    if (debug_mode)
+
+    cout << "\nYour number in the system with base: " << x << " is:\n";
+    for (int i = 0; i < binary_whole.size(); i++)
     {
-        cout << "@@@@@@@@@ TESTSTELLE VEKTOR EINGABE @@@@@@@@@@\n";
-        cout << std::endl;
+        cout << binary_whole[i];
     }
-    vector_reverse_with_length_and_print(binary_whole, vector_length, base);
-    if (debug_mode)
-    {
-        cout << "\n@@@@@@@@@ TESTSTELLE VEKTOR AUSGABE @@@@@@@@@@\n";
-        cout << std::endl;
-    }
+
     return binary_whole;
-}
-
-vector<int> vector_reverse_with_length_and_print(vector<int> input_vector, int vector_length, int base)
-{
-    vector<int> calc_vector(100);
-
-    calc_vector = input_vector;
-
-    // Printing out in right direction
-    cout << "\n binary number: \n";
-    for (int i = 0; i < vector_length; i++)
-    {
-        cout << calc_vector[i];
-    }
-
-    // printing and assigning reverse direction
-    cout << "\n binary number, new order: \n";
-    for (int i = vector_length - 1, j = 0; j < vector_length; i--, j++)
-    {
-        calc_vector[j] = input_vector[i];
-
-        cout << calc_vector[j];
-    }
-
-    return calc_vector;
 }
