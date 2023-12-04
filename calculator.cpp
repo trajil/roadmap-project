@@ -5,12 +5,8 @@ using std::cin, std::cout, std::string, std::vector;
 
 /* CURRENT TASK:
 
-    BONUS ROUND:
-    Implement calculating to the power of and translating dec to bin;
-
 */
 
-// OVERLOADED FUNCTIONS -> INTEGERS
 // outputs
 string t_welcome = "Hi there, buddy! We're doing maths and stuff!";
 string t_sum = "The sum is: ";
@@ -27,7 +23,7 @@ string t_datatype_wrong = "Please only use 'F' or 'I'! \n";
 string t_input_operator = "First, enter the operator (+, -, /, * or p): ";
 string t_input_numbers_i = "Now type in your two numbers (only whole numbers!)\n";
 string t_input_numbers_f = "Now type in your two numbers! \n";
-string t_input_numbers_dec = "Translate decimal [NUMB1] to system_with_base_n[NUMB2]! \n";
+string t_input_numbers_dec = "Translate decimal [NUMB1] to system_with_base_n[NUMB2] - POSITIVE INTs ONLY!\n";
 string t_input_numbers_1 = "Number 1: ";
 string t_input_numbers_2 = "Number 2: ";
 string t_choice_wrong = "Please use: (+, -, /, * or p)";
@@ -37,6 +33,8 @@ string t_input_datatype = "Calculations [INT:I] or [FLOAT:F], Translations [DEC:
 
 int x, y;
 double a, b;
+
+vector<int> dec_to_baseX;
 
 int sum(int x, int y);
 int dif(int x, int y);
@@ -49,7 +47,7 @@ double quo(double a, double b);
 double product(double a, double b);
 double power(double a, double b);
 
-vector<int> dec_to_binary(int y, int x);
+void dec_to_base_X_numeral_system(int y, int x);
 
 void control(char choice_operator = '+', char choice_datatype = 'I')
 {
@@ -125,7 +123,12 @@ void control(char choice_operator = '+', char choice_datatype = 'I')
         cin >> x;
         cout << t_input_numbers_2;
         cin >> y;
-        dec_to_binary(x, y);
+        dec_to_base_X_numeral_system(x, y);
+        cout << "\nYour number in the system with base: " << x << " is:\n";
+        for (int i : dec_to_baseX)
+        {
+            cout << i;
+        }
     }
     else
     {
@@ -249,34 +252,27 @@ double power(double a, double b)
     return a;
 }
 
-vector<int> dec_to_binary(int y, int x)
+void dec_to_base_X_numeral_system(int y, int x)
 {
-    vector<int> binary_whole(0);
+    // POSITIVE NUMBERS ONLY
+    y = abs(y);
+    x = abs(x);
+
     int rest;
+    dec_to_baseX.clear();
 
     // 'Y' is the integer, 'X' is the base_system (e.g. x=2 is binary system)
     if (y >= x)
     {
         for (int i = 1; y != 0; i++)
         {
-            // binary_whole.resize(i);
-
             rest = y % x;
             y = (y - rest) / x;
-            binary_whole.insert(binary_whole.begin(), rest);
+            dec_to_baseX.insert(dec_to_baseX.begin(), rest);
         }
     }
     else
     {
-        cout << "Too low integer entered!\n";
-        return binary_whole;
+        dec_to_baseX.push_back(y);
     }
-
-    cout << "\nYour number in the system with base: " << x << " is:\n";
-    for (int i = 0; i < binary_whole.size(); i++)
-    {
-        cout << binary_whole[i];
-    }
-
-    return binary_whole;
 }
